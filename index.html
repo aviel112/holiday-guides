@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>מדריכי תשרי — שולחן החג, ראש השנה, יום כיפור וסוכות</title>
+<meta name="description" content="ארבעה מדריכי תשרי: שולחן החג, ראש השנה עם ערכים קלוריים לסימנים, יום כיפור לפני ואחרי הצום, ושבוע סוכות.">
+<meta property="og:title" content="מדריכי תשרי — 4 מדריכים מלאים">
+<meta property="og:description" content="4 מדריכים מלאים: שולחן החג, ראש השנה (ערכים קלוריים לסימנים), יום כיפור ושבוע סוכות.">
+<meta name="theme-color" content="#0f6f5c">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f5f7; --surface:#ffffff; --surface-2:#f9fafb; --line:#e6e8ec; --line-2:#d3d7de;
+    --ink:#101828; --ink-2:#475467; --muted:#8b93a1;
+    --brand:#0f6f5c; --brand-2:#12907a; --brand-soft:#e7f4f0;
+    --accent:#e2703a; --accent-soft:#fdf0e8;
+    --sans:'Rubik', system-ui, -apple-system, sans-serif;
+    --r:16px; --shadow:0 1px 2px rgba(16,24,40,.05), 0 8px 24px -12px rgba(16,24,40,.14);
+  }
+  *{box-sizing:border-box; margin:0; padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans); background:var(--bg); color:var(--ink);
+    line-height:1.75; overflow-x:hidden; min-height:100vh; -webkit-font-smoothing:antialiased}
+  .wrap{max-width:700px; margin:0 auto; padding:0 20px}
+  h1,h2,h3,h4{font-weight:700; letter-spacing:-.02em; line-height:1.25}
+
+  /* ===== GATE ===== */
+  #gate{min-height:100vh; display:flex; align-items:center; justify-content:center; padding:36px 20px;
+    background:linear-gradient(165deg,#0f6f5c 0%, #0b4f43 55%, #08332c 100%)}
+  .gate-card{max-width:420px; width:100%; background:var(--surface);
+    border-radius:20px; padding:32px 26px 26px; text-align:center;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.45)}
+  .gate-top{margin-bottom:22px}
+  .gate-top .mark{display:grid; place-items:center; width:52px; height:52px; margin:0 auto 16px;
+    border-radius:15px; background:var(--brand-soft); font-size:25px}
+  .kicker{display:block; font-weight:600; letter-spacing:.16em; font-size:10.5px;
+    color:var(--brand); margin-bottom:9px}
+  .gate-card h1{font-size:26px; color:var(--ink)}
+  .gate-body{}
+  .gate-card .sub{color:var(--ink-2); font-size:14.5px; font-weight:300; margin:10px 0 22px; line-height:1.65}
+  .field{position:relative; margin-bottom:9px}
+  .row2{display:flex; gap:9px}
+  .row2 .field{flex:1}
+  input{width:100%; background:var(--surface-2); border:1.5px solid var(--line); border-radius:11px;
+    color:var(--ink); font-family:var(--sans); font-size:15.5px; font-weight:400; padding:13px 14px;
+    outline:none; text-align:right; transition:.16s}
+  input::placeholder{color:var(--muted); font-weight:300}
+  input:focus{border-color:var(--brand); background:#fff; box-shadow:0 0 0 4px rgba(15,111,92,.10)}
+  .field.ig input{padding-right:32px}
+  .field.ig::before{content:'@'; position:absolute; right:14px; top:50%; transform:translateY(-50%);
+    color:var(--muted); font-weight:500; font-size:15.5px; pointer-events:none}
+  .btn{width:100%; margin-top:12px; padding:15px; border:none; border-radius:11px; cursor:pointer;
+    background:var(--brand); color:#fff; font-family:var(--sans); font-size:16px; font-weight:600;
+    transition:.16s; box-shadow:0 6px 16px -6px rgba(15,111,92,.6)}
+  .btn:hover{background:var(--brand-2); transform:translateY(-1px)}
+  .btn:active{transform:translateY(0)}
+  .btn:disabled{opacity:.55; cursor:default; transform:none; box-shadow:none}
+  .err{color:#c8382a; font-size:13px; margin-top:9px; display:none; font-weight:500}
+  .privacy{color:var(--muted); font-size:11.5px; font-weight:300; margin-top:15px}
+
+  /* ===== APP ===== */
+  #app{display:none; padding:0 0 70px}
+  .masthead{padding:40px 0 26px; text-align:center}
+  .masthead .rule{display:inline-block; font-size:11px; font-weight:600; letter-spacing:.14em;
+    color:var(--brand); background:var(--brand-soft); border-radius:100px; padding:5px 14px; margin-bottom:14px}
+  .masthead h2{font-size:34px}
+  .masthead p{color:var(--ink-2); font-weight:300; font-size:15px; margin-top:10px}
+
+  /* nav — segmented control */
+  .tabs{display:flex; gap:4px; background:var(--surface); border:1px solid var(--line);
+    border-radius:14px; padding:5px; margin-bottom:28px; position:sticky; top:12px; z-index:9;
+    box-shadow:var(--shadow)}
+  .tab{flex:1; background:none; border:none; border-radius:10px; cursor:pointer;
+    font-family:var(--sans); font-size:13.5px; font-weight:500; color:var(--ink-2);
+    padding:11px 6px; transition:.16s; text-align:center; line-height:1.3}
+  .tab .em{display:block; font-size:17px; margin-bottom:3px; opacity:.45; transition:.16s}
+  .tab:hover{background:var(--surface-2)}
+  .tab.on{background:var(--brand); color:#fff; font-weight:600; box-shadow:0 4px 12px -4px rgba(15,111,92,.55)}
+  .tab.on .em{opacity:1}
+
+  section.guide{display:none}
+  section.guide.on{display:block}
+
+  .g-head{background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+    padding:26px 24px; margin-bottom:24px; box-shadow:var(--shadow); position:relative; overflow:hidden}
+  .g-head::before{content:''; position:absolute; top:0; bottom:0; inset-inline-start:0; width:5px; background:var(--brand)}
+  .g-head .em{font-size:32px; line-height:1; display:block; margin-bottom:10px}
+  .g-head h3{font-size:25px}
+  .g-head p{color:var(--ink-2); font-size:14.5px; font-weight:300; margin-top:8px}
+  .meta{display:flex; gap:7px; margin-top:15px; flex-wrap:wrap}
+  .chip{font-size:11px; font-weight:500; color:var(--ink-2); background:var(--surface-2);
+    border:1px solid var(--line); border-radius:100px; padding:4px 11px}
+
+  h4.sec{font-size:19px; margin:34px 0 14px; display:flex; align-items:center; gap:10px}
+  h4.sec::before{content:''; width:22px; height:3px; background:var(--accent); border-radius:2px; flex:none}
+  p.txt{font-size:15.5px; font-weight:300; color:var(--ink-2); margin-bottom:15px; white-space:pre-line}
+  p.txt b{font-weight:600; color:var(--ink)}
+
+  .acc{border:1px solid var(--line); border-radius:13px; overflow:hidden; margin-bottom:8px;
+    background:var(--surface); transition:.16s}
+  .acc summary{list-style:none; cursor:pointer; padding:15px 17px; display:flex; align-items:center;
+    gap:10px; font-weight:600; font-size:15.5px; color:var(--ink)}
+  .acc summary::-webkit-details-marker{display:none}
+  .acc summary::after{content:''; margin-inline-start:auto; flex:none; width:9px; height:9px;
+    border-right:2px solid var(--muted); border-bottom:2px solid var(--muted);
+    transform:rotate(45deg) translateY(-2px); transition:transform .2s}
+  .acc[open] summary::after{transform:rotate(-135deg) translateY(-2px)}
+  .acc[open]{box-shadow:var(--shadow); border-color:var(--line-2)}
+  .acc .badge{font-size:10.5px; font-weight:500; color:var(--brand); background:var(--brand-soft);
+    border-radius:100px; padding:3px 10px; white-space:nowrap}
+  .acc .body{padding:0 17px 18px; font-size:15px; font-weight:300; color:var(--ink-2); white-space:pre-line}
+
+  .tbl-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--r); margin-bottom:16px;
+    background:var(--surface); box-shadow:var(--shadow)}
+  table{width:100%; border-collapse:collapse; min-width:420px}
+  th{background:var(--surface-2); color:var(--muted); font-size:11.5px; font-weight:600;
+    letter-spacing:.06em; padding:12px 16px; text-align:right; border-bottom:1px solid var(--line)}
+  td{padding:12px 16px; font-size:15px; font-weight:300; border-bottom:1px solid var(--line); color:var(--ink-2)}
+  tr:last-child td{border-bottom:none}
+  td:first-child{font-weight:500; color:var(--ink)}
+  td:last-child{font-weight:600; color:var(--brand); font-size:16px}
+
+  .callout{background:var(--accent-soft); border:1px solid #f6dcca; border-radius:var(--r);
+    padding:17px 19px; font-size:15px; font-weight:300; color:#7a4526; margin:18px 0; white-space:pre-line}
+  .callout b{color:#8c3f12; font-weight:600}
+
+  .actions{display:flex; gap:10px; margin:36px 0 0; flex-wrap:wrap}
+  .actions .btn{flex:1 1 200px; margin:0}
+  .btn.ghost{background:var(--surface); border:1.5px solid var(--line-2); color:var(--ink); box-shadow:none}
+  .btn.ghost:hover{background:var(--surface-2); border-color:var(--brand); color:var(--brand)}
+
+  footer{text-align:center; color:var(--muted); font-size:12px; font-weight:300; margin-top:44px;
+    padding-top:22px; border-top:1px solid var(--line); line-height:1.9}
+
+
+  /* toc */
+  .toc{background:var(--surface); border:1px solid var(--line); border-radius:var(--r);
+    padding:18px 20px; margin-bottom:24px; box-shadow:var(--shadow)}
+  .toc-t{display:block; font-size:11px; font-weight:600; letter-spacing:.14em; color:var(--muted);
+    margin-bottom:10px}
+  .toc ol{margin:0; padding-inline-start:20px}
+  .toc li{font-size:14.5px; font-weight:400; color:var(--ink-2); padding:3px 0}
+  .toc li::marker{color:var(--brand); font-weight:600}
+
+  /* recipe book card */
+  .book{margin-top:38px; border-radius:var(--r); overflow:hidden; border:1px solid var(--line);
+    background:linear-gradient(140deg,#0f6f5c,#0b4f43); color:#fff; padding:26px 24px; text-align:center;
+    box-shadow:0 14px 34px -16px rgba(15,111,92,.7)}
+  .book .em{font-size:32px; display:block; margin-bottom:10px}
+  .book h4{font-size:22px; color:#fff}
+  .book p{font-size:14.5px; font-weight:300; color:rgba(255,255,255,.85); margin:9px 0 18px; line-height:1.65}
+  .book a{display:inline-block; background:#fff; color:var(--brand); text-decoration:none;
+    font-size:15.5px; font-weight:600; padding:13px 26px; border-radius:11px; transition:.16s}
+  .book a:hover{transform:translateY(-1px); box-shadow:0 8px 20px -8px rgba(0,0,0,.4)}
+
+  /* ===== PRINT / PDF ===== */
+  @media print{
+    body{background:#fff; color:#111}
+    #gate,.tabs,.actions{display:none !important}
+    .book{background:#fff; color:#111; border-color:#ccc} .book a{border:1px solid #999}
+    #app{display:block !important; padding:0}
+    .masthead{page-break-after:avoid}
+    section.guide{display:block !important; page-break-after:always}
+    .acc .body{display:block !important; padding-top:0}
+    .acc summary::after{display:none}
+    .acc,.tbl-wrap,.callout,.g-head{page-break-inside:avoid; box-shadow:none}
+    a[href]:after{content:''}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== GATE ===== -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-top">
+      <span class="mark">🍯</span>
+      <span class="kicker">חגי תשרי</span>
+      <h1>ארבעת מדריכי תשרי</h1>
+    </div>
+    <div class="gate-body">
+    <p class="sub">שולחן החג · ראש השנה עם ערכים קלוריים לסימנים · יום כיפור לפני ואחרי הצום · שבוע סוכות. משאירים פרטים ונכנסים.</p>
+
+    <div class="row2">
+      <div class="field"><input id="gFirst" type="text" placeholder="שם פרטי" autocomplete="given-name"></div>
+      <div class="field"><input id="gLast" type="text" placeholder="שם משפחה" autocomplete="family-name"></div>
+    </div>
+    <div class="row2">
+      <div class="field"><input id="gAge" type="number" inputmode="numeric" placeholder="גיל" min="14" max="99"></div>
+      <div class="field"><input id="gPhone" type="tel" inputmode="tel" placeholder="טלפון" autocomplete="tel"></div>
+    </div>
+    <div class="field ig"><input id="gIg" type="text" placeholder="שם משתמש באינסטגרם" autocomplete="off" spellcheck="false"></div>
+
+    <button class="btn" id="gBtn">כניסה למדריכים ←</button>
+    <div class="err" id="gErr"></div>
+    <p class="privacy">הפרטים נשמרים אצל אביאל עמירה בלבד. לא מוסרים לאף אחד.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== APP ===== -->
+<div id="app">
+<div class="wrap">
+
+  <div class="masthead">
+    <div class="rule">חגי תשרי</div>
+    <h2>ארבעת מדריכי תשרי</h2>
+    <p>כל מה שצריך לדעת כדי לעבור את חגי תשרי בלי לעצור את התהליך.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="g1"><span class="em">🍽️</span>שולחן החג</button>
+    <button class="tab" data-t="g2"><span class="em">🍯</span>ראש השנה</button>
+    <button class="tab" data-t="g3"><span class="em">🕊️</span>יום כיפור</button>
+    <button class="tab" data-t="g4"><span class="em">🌿</span>סוכות</button>
+  </div>
+
+  <!-- ================= מדריך 1 ================= -->
+  <section class="guide on" id="g1">
+    <div class="g-head">
+      <span class="em">🍽️</span>
+      <h3>שולחן החג — המדריך המלא</h3>
+      <p>ציר זמן של 24 שעות: מה עושים לפני, איך בונים צלחת בלי משקל מזון, ואיך חוזרים לשגרה למחרת.</p>
+      <div class="meta"><span class="chip">בסיס</span><span class="chip">6 שלבים</span></div>
+    </div>
+
+    <p class="txt">ארוחות חג הן חלק מהחיים, ולא צריך לפחד מהן. הכל נופל על דבר אחד — <b>לבוא מתוכננים</b>. המדריך הזה בנוי כציר זמן: מהיום שלפני ועד הבוקר שאחרי.</p>
+
+    <div class="toc">
+      <span class="toc-t">מה יש כאן</span>
+      <ol>
+        <li>24 שעות לפני — לסגור את הלו״ז</li>
+        <li>יום החג — לבנות את השובע</li>
+        <li>הצלחת הראשונה — מדידה בכף יד</li>
+        <li>הסיבוב השני והמתוקים</li>
+        <li>יוצאים מהבית — מה לוקחים</li>
+        <li>הבוקר שאחרי — לאפס ולהמשיך</li>
+      </ol>
+    </div>
+
+
+    <h4 class="sec">1. 24 שעות לפני — לסגור את הלו״ז</h4>
+    <p class="txt">תבדקו את שעות הפתיחה של חדר הכושר בתקופת החגים. יש ראש השנה, סוכות, יום כיפור ושמחת תורה — לכל אחד שעות פתיחה שונות. תראו איך זה מסתדר בלו״ז שלכם: אם אתם אצל המשפחה בתקופה מסוימת, תעשו את האימונים קצת לפני, בתחילת השבוע, כי יהיו לכם כמה ימי מנוחה רצופים.
+
+<b>שמירה על שגרת אימונים היא המפתח לשמירה על המשמעת — במיוחד בתקופה הזאת.</b></p>
+
+    <h4 class="sec">2. יום החג — לבנות את השובע</h4>
+    <p class="txt">המטבח הופך למסדר צבאי של סירים גדולים, והפיתוי הוא פשוט להתאפק ולחכות עד הערב. זה מתכון מנצח להגיע לארוחה בחוסר שליטה, עם עיניים גדולות מדי, ולצאת ממנה מנופחים.
+
+השיטה: להגיע <b>מספיק שבעים</b> מצד אחד, אבל <b>בלי לבזבז קלוריות מיותרות</b> לפני — כדי להגיע עם תקציב גדול יותר לארוחה.</p>
+
+    <div class="callout"><b>איך זה נראה בפועל (דוגמה אישית):</b>
+• בבוקר — כ־50 גרם חלבון. עדיף מקורות שיושבים יותר זמן בבטן. המטרה: שובע.
+• להוסיף פירות בשביל הסיבים — שובע יציב הרבה יותר מפרוסת לחם עם גבינה.
+• ארוחה שנייה, 3–4 שעות לפני ארוחת החג: מנת חלבון גדולה יותר, באזור 50–60 גרם חלבון (למשל סטייק עם ברוקולי, סלט עם עוף או סלט עם טונה) — עם הרבה ירקות.
+• להגיע לפחות ל־1–1.5 גרם חלבון לק״ג משקל גוף לפני הארוחה.</div>
+
+    <p class="txt"><b>למה למזער פחמימות לפני ארוחת החג?</b> לא כדי "לחסוך" בקלוריות בכוח — אלא כי הן פשוט לא תורמות לשובע. אם כבר מוסיפים משהו, תוסיפו עוד חלבון. הפחמימות היחידות שכדאי להכניס הן כאלה שמגיעות יחד עם סיבים תזונתיים. לאכול אורז או לחם שעות לפני הארוחה — פשוט אין לזה סיבה.
+
+התוצאה: מגיעים שבעים, נהנים הרבה יותר מהטעמים, לא מתפרעים על הכמויות, ועדיין נשאר תקציב קלורי לארוחה עצמה — בלי להיות קמצנים.</p>
+
+    <div class="callout"><b>הכפתור היחיד שמבטיח לכם שליטה באוכל הוא שובע.</b>
+לא משמעת עצמית. לא מוטיבציה. שובע. יש עוד כלים חיצוניים, אבל זה החזק מכולם.
+לא מדי — שלא תשבו עם פרצוף חמוץ. טיפה רעבים, שבעים במידה הנכונה.</div>
+
+    <h4 class="sec">3. הצלחת הראשונה — מדידה בכף יד</h4>
+    <p class="txt">אין צורך במשקל מזון ואין צורך לשבת בפחד. משתמשים בכלי מדידה שיש לכולנו — <b>כף היד</b>. היא פרופורציונלית לגודל הגוף שלכם, ולא לגודל הצלחת שהגישו לכם.
+
+וזה גם <b>הסדר שבו כדאי לאכול</b> — כדי להגיע למקסימום שובע מהדברים הנכונים:</p>
+
+    <div class="tbl-wrap"><table>
+      <tr><th>שלב</th><th>המידה</th><th>מה זה</th></tr>
+      <tr><td>1. ירקות וסלטים</td><td>חופן</td><td>מיקס מכל הסלטים על השולחן — כבר תופס שליש מהצלחת</td></tr>
+      <tr><td>2. חלבון</td><td>2 כפות יד</td><td>דג / בשר / עוף — שטח המגע בצלחת יהיה פי 2 מכף יד סגורה</td></tr>
+      <tr><td>3. פחמימה</td><td>אגרוף סגור</td><td>אורז / תפוחי אדמה / חלה — שילוב של כמה ביסים</td></tr>
+      <tr><td>4. שומנים</td><td>אגודל</td><td>טחינה, חומוס והרטבים — היקרים ביותר קלורית</td></tr>
+    </table></div>
+
+    <p class="txt"><b>רוצים מנה נוספת?</b> תעשו סבב נוסף לפי אותה חוקיות — אבל הפעם תאכלו קודם את הירקות והחלבונים, ורק אז תבדקו אם אתם באמת רוצים עוד פחמימה. ככה אתם לא מרגישים מוגבלים, אתם פשוט אוכלים בסדר שמשרת אתכם.</p>
+
+    <h4 class="sec">4. הסיבוב השני והמתוקים</h4>
+    <p class="txt">רוב האנשים דווקא כן שולטים בעצמם בארוחת החג — ואז נופלים בשולחן הקינוחים, כשיושבים עם המשפחה והיד קלה על ההדק.
+
+<b>חוק הצלוחית:</b> לוקחים צלוחית בגודל מרכז כף היד, ומגישים לעצמכם עליה. המטרה היא לקטוע את הציר של "מהשולחן ישר לפה" — ברגע שקטענו אותו, אנחנו כבר שלב אחד קדימה.</p>
+
+    <div class="callout"><b>איך מיישמים:</b>
+• הצלוחית משמשת בעיקר לקינוחים השמנים — עוגות, פיצוחים.
+• על צלחת פירות אין מגבלה — קחו קערה והעמיסו.
+• אוכלים, מרגישים את השובע והכיף, קמים ומניחים את הצלוחית בכיור.
+• רוצים עוד? אין בעיה — אבל שוב דרך הצלוחית. מורידים את רמת הנגישות, ורוב הרצון לעוד סיבוב מתאפס מעצמו.
+• לא לרמות: בלי מגדל בבל של עוגות ובלי צלוחיות ענקיות.</div>
+
+    <h4 class="sec">5. יוצאים מהבית — מה לוקחים</h4>
+    <p class="txt">אני בעד לקחת שאריות — אבל כאן מגיעות הבחירות שמשרתות את השגרה שלכם. מה שתכניסו הביתה, כנראה ייאכל. דווקא ברגע הזה, כשאתם שבעים והעיניים כבר לא גדולות, קל הרבה יותר לשלוט במה נכנס לבית.
+
+<b>קחו:</b> סלטים, חלבונים, אורז. <b>ותנו לשאר המשפחה</b> ליהנות מהתבשילים הכבדים.</p>
+
+    <div class="callout"><b>טיפ בונוס — לסיים את הארוחה בתנועה:</b>
+במקום להתפרק על הספה, תמצאו משהו אקטיבי שמאחד את המשפחה — כדורסל, כדורגל, תופסת, סקייטבורד, מה שמתאים לכם. במיוחד לחבר׳ה הצעירים שיש להם המון אנרגיה אחרי הארוחה. זה מקרב, זה בריא, וזה נותן תחושה אחרת לגמרי מאשר לשבת נפוחים.</div>
+
+    <h4 class="sec">6. הבוקר שאחרי — לאפס ולהמשיך</h4>
+    <p class="txt">אחרי החג אנחנו פחות רעבים מהרגיל — וזה בדיוק מה שמנצלים.
+
+<b>המטרה הראשונה:</b> להוריד את הנוזלים שהצטברו. יותר פחמימה ויותר נתרן בחג יוצרים אצירת נוזלים שגורמת לאי־נוחות בבטן ולקפיצה במשקל. זה טבעי לחלוטין — לא לדאוג.
+
+<b>הפעולה:</b> לנצל את השעות הראשונות של הבוקר, לשים נעליים ולצאת להליכה. זה עושה שלושה דברים:</p>
+
+    <div class="callout">1. <b>מזרז את פינוי הנוזלים</b> ומחזיר את הגוף מהר לאיפה שהיה לפני החג.
+2. <b>מאזן את רמות הרעב</b> לשאר היום ומקטין את הסיכוי לנשנושים — בחג די משעמם בבית, ושעמום מוביל לנשנוש.
+3. <b>מייצר מוטיבציה</b> להשקיע קצת יותר בעצמכם כשחוזרים — סלט טוב, ירקות בתנור, אוכל שעושה לגוף טוב.</div>
+
+    <p class="txt">מתחילים את היום בהליכה, לא ממהרים לאכול לפני שמרגישים בצורך, וכשמתחילים — אותו פוקוס בדיוק כמו ביום החג: ירקות, חלבונים, קצת פירות. אפשר גם לאכול קצת פחות באותו יום. זה עובד מעולה, וככה חוזרים מהר לשגרה.</p>
+
+    <div class="callout"><b>ומילה על מחויבות חיצונית —</b> הכלי החזק ביותר לעמידה בתהליך:
+• <b>אחריותיות חברתית</b> — ברגע שאתה מתחייב למאמן אתה כבר לא עובד מול עצמך.
+• <b>מישהו צופה בך</b> — כשבודקים מדדים ושואלים שאלות, אתה לא רוצה להגיע בלי תשובה.
+• <b>זהות חדשה</b> — ברגע שאמרת לסביבה "אני נכנס לתהליך", קשה הרבה יותר לחזור אחורה.
+• <b>פחות מקום לתירוצים</b> — לבד תמיד אפשר להגיד "מחר". מול מאמן זו דחייה שמישהו רואה.
+• <b>חיזוק מתמיד</b> — פידבק, פרגון על התקדמות, וגם בראש כשצריך.</div>
+  </section>
+
+  <!-- ================= מדריך 2 ================= -->
+  <section class="guide" id="g2">
+    <div class="g-head">
+      <span class="em">🍯</span>
+      <h3>ראש השנה</h3>
+      <p>הסימנים, החלה והדג — כמה קלוריות באמת יש בכל אחד, ואיך מתכננים רצף של כמה ימי חג.</p>
+      <div class="meta"><span class="chip">ערכים קלוריים</span><span class="chip">4 עקרונות</span></div>
+    </div>
+
+    <p class="txt">ראש השנה זה חג של סימנים, ארוחות משפחתיות ארוכות והרבה מאכלים מתוקים. אפשר בהחלט ליהנות מהחג בלי להרגיש שהתהליך נעצר — צריך רק להגיע עם תכנון נכון וכמה עקרונות פשוטים.</p>
+
+
+    <h4 class="sec">נו... דבר איתי תכל׳ס</h4>
+
+    <details class="acc" open><summary>רצף חגים — לתכנן קדימה <span class="badge">תכנון ארוחות</span></summary>
+      <div class="body">חגי תשרי מגיעים ביחד :) זה לא מסתיים בארוחת חג אחת.
+
+אז חשוב להסתכל כמה ימים קדימה עם תכנון הארוחות ולא רק על ערב החג הקרוב.</div></details>
+
+    <details class="acc"><summary>חיסכון בקלוריות מראש <span class="badge">אבל לא להגיע רעבים</span></summary>
+      <div class="body">בדיוק כמו כל אירוע/חג נרצה לחסוך בקלוריות מיותרות לקראת הערב עצמו — נוותר על קלוריות חופשיות ופחמימות בבוקר ובצהריים.
+
+אבל שימו לב לא להגיע רעבים לארוחת חג! עדיף שתאכלו עוד מנת חלבון בארוחה או שעה לפני הארוחה.
+
+זה טריק שאני עושה על עצמי שעובד מעולה.</div></details>
+
+    <details class="acc"><summary>לנצל את היום להליכה <span class="badge">צעדים = חריגות קטנות</span></summary>
+      <div class="body">הרווחנו השנה גם יום שמשי ויפה, אז אפשר לנצל אותו להליכה כיפית שתעזור לנו להגיע ליעד צעדים ואפילו קצת מעל — שנוכל לקחת בחשבון חריגות קטנות.</div></details>
+
+    <details class="acc"><summary>חלוקת הצלחת <span class="badge">פרופורציות זהות לתפריט</span></summary>
+      <div class="body">החלוקה נשארת זהה לארוחה עיקרית שלכם בתפריט. כנראה שהמאכלים יהיו קצת שונים אבל הפרופורציות זהות:
+• 2 מנות הגשה (גודל כף יד) של חלבון — דג / עוף / בשר
+• 2 מנות הגשה (חופן) של ירקות וסלטים
+• מנת הגשה (אגרוף) של פחמימה — אורז / חלה / תפוח אדמה
+
+קינוחים זה חלק בלתי נפרד. הטריק שלי — לקחת צלוחית קטנה בגודל כף יד, למלא בה כל מה שנראה טוב בעין. סיימתם? יופי, להניח אותה בכיור וליהנות מהזמן עם המשפחה.</div></details>
+
+    <h4 class="sec">ערכים קלוריים במאכלי ראש השנה</h4>
+    <p class="txt">הערכים ממוצעים ומתייחסים ליחידה/מנה כפי שמצוין בעמודה הראשונה.</p>
+
+    <div class="tbl-wrap"><table>
+      <tr><th>מאכל</th><th>כמות</th><th>קלוריות</th></tr>
+      <tr><td>תפוח בינוני שלם</td><td>200 גרם (יחידה)</td><td>100</td></tr>
+      <tr><td>תפוח — רבע יחידה</td><td>50 גרם</td><td>25</td></tr>
+      <tr><td>דבש</td><td>טבילה = 10 גרם</td><td>30</td></tr>
+      <tr><td>רימון</td><td>כף = 10 גרם</td><td>9</td></tr>
+      <tr><td>פילה דג לבן — קטן</td><td>80 גרם</td><td>80</td></tr>
+      <tr><td>פילה דג לבן — בינוני</td><td>120 גרם</td><td>120</td></tr>
+      <tr><td>פילה דג לבן — גדול</td><td>180 גרם</td><td>180</td></tr>
+      <tr><td>פרוסת חלה</td><td>גודל כף יד (עובי אצבע) · 40 גרם</td><td>100</td></tr>
+    </table></div>
+
+    <p class="txt">תשימו לב לרוטב של הדג: אם הוא בושל בלי הרבה שמן — אין בעיה. אם כן — תשתדלו לקחת בעיקר חתיכות נקיות של דג.</p>
+
+    <div class="callout"><b>והכי חשוב לזכור — שום דבר לא קם ונופל בארוחה אחת.</b>
+כל הכלים במדריך הזה הם רק כדי לתת לכם גישה ליהנות בטעם טוב ולא להגביל את עצמכם.
+
+בקיצור — שיהיה חג שמח ושנה טובה 🍎🍯</div>
+  </section>
+
+  <!-- ================= מדריך 3 ================= -->
+  <section class="guide" id="g3">
+    <div class="g-head">
+      <span class="em">🕊️</span>
+      <h3>יום כיפור</h3>
+      <p>הארוחה המפסקת, ניהול נוזלים ונתרן, והחזרה לאכילה בצאת הצום — בלי כאבי בטן ובלי דאגה למסת השריר.</p>
+      <div class="meta"><span class="chip">לפני הצום</span><span class="chip">אחרי הצום</span></div>
+    </div>
+
+    <p class="txt">בניגוד לדעה הרווחת לא מאבדים מסת שריר מצום קצר יחסית כמו יום כיפור, וגם לא משמינים מארוחה גדולה לפני/אחרי הצום.
+
+כמו שאתם כבר מבינים שינוי הגוף זה תהליך ארוך טווח, אז אין לכם סיבה לחשוש שזה יהרוס לכם את התוצאות שהשגתם עד עכשיו!</p>
+
+    <h4 class="sec">מה לאכול לפני הצום</h4>
+
+    <details class="acc" open><summary>ארוחה מפסקת <span class="badge">חלבון גבוה</span></summary>
+      <div class="body">תכפילו או תשלשו את הארוחה הכי גדולה (צהריים) שלכם בתפריט, אבל אל תתפוצצו עד שאין לכם מקום לנשום.
+
+כדאי לצרוך כמויות גבוהות של חלבון, לערך 1–1.2 גרם לק״ג משקל גוף בארוחה אחת.
+
+אם אתה גבר ששוקל 80 ק״ג, תאכל 80–100 גרם חלבון בארוחה אחת (כן, אפשר וזה ייספג).
+
+אם את אישה ששוקלת 60 ק״ג, כדאי לשאוף ל־60–70 גרם חלבון בארוחה (לדוגמה 250 גרם חזה עוף אחרי בישול, אבל אין צורך לאכול את החלבון ממאכל בודד וכדאי לגוון).
+
+אין באמת פרוטוקולים מיוחדים לארוחה שלפני הצום. אם תרצו להכניס פחמימות במינון ריאלי — הן ייתנו לכם נפח לארוחה ותחושת שובע.</div></details>
+
+    <details class="acc"><summary>כדאי להכניס שומן לארוחה <span class="badge">שומן וסיבים</span></summary>
+      <div class="body">כדי להאט את קצב הספיגה של המזון.
+
+להימנע מהרבה סיבים (ירקות) — זה עלול להצמיא.
+
+מצד שני סיבים מאטים את קצב העיכול ותורמים לתחושת שובע, לכן תאכלו ירקות אבל במינון נמוך — 1–2 ירקות מספיק.</div></details>
+
+    <details class="acc"><summary>יש להמעיט בנתרן (מלח) <span class="badge">המעט בנתרן</span></summary>
+      <div class="body">צריכה גבוהה של נתרן (מלח) תגרום לתחושת צמא שתקשה עליכם כמה שעות לאחר מכן בצום עצמו. ההמלצה תהיה להימנע ממוצרי חלב עם כמויות גבוהות של נתרן (גבינה בולגרית, קוטג׳) ולהימנע מרטבים (לדוגמה סויה).</div></details>
+
+    <details class="acc"><summary>תגבירו צריכת נוזלים החל מיום לפני <span class="badge">נוזלים</span></summary>
+      <div class="body">לגוף יש וסת של כמות נוזלים, אז תנו לו את הכמות שהוא צריך כבר לפני כניסת הצום, ותגבירו את המלח ביום שלפני כדי שהנוזלים "יתפסו" בגוף — אבל אל תגזימו בשתייה, כי אחרת תגבירו את השתן וזה יימשך איתכם אל תוך הצום ותתייבשו.
+
+ההמלצה: לדאוג לשתן שקוף ביום שלפני, יחד עם מאכלים עם נתרן גבוה, כדי להגיע למצב של גוף רווי (אם המשקל קפץ בבוקר למחרת — סימן שעשיתם עבודה טובה).</div></details>
+
+    <h4 class="sec">התנהלות אחרי הצום</h4>
+
+    <details class="acc" open><summary>לא לנשנש יותר מדי <span class="badge">נשנושים</span></summary>
+      <div class="body">אם אתם חושבים לעשות עכשיו הליכות של 10 ק״מ בשכונה — תחשבו שוב. תחושת הצמא במקרה כזה רק תגבר.</div></details>
+
+    <details class="acc"><summary>תתלבשו יפה אבל לא מוגזם <span class="badge">לבוש</span></summary>
+      <div class="body">אחרי בית הכנסת, כשחוזרים הביתה — תדאגו להחליף למשהו נוח שלא יגרום לכם להזיע סתם.</div></details>
+
+    <details class="acc"><summary>בצאת הצום — לא להעמיס על הקיבה <span class="badge">העמסה</span></summary>
+      <div class="body">אחרת אתם עלולים לחוות שלשולים וכאבי בטן מיותרים. התחילו בארוחה או שתיים שיהיו יחסית קטנות, במרווח של כשעה אחת מהשנייה. לאחר כשעה וחצי–שעתיים אתם יכולים לאכול כרגיל — אבל גם כאן לא כדאי להכניס את כל התפריט שלכם בארוחה אחת מבחינה קלורית (במיוחד אם אתם בתהליך של עלייה במסת שריר).</div></details>
+
+    <details class="acc"><summary>ארוחה שוברת צום יכולה להיות פחמימה פשוטה <span class="badge">פחמימה פשוטה</span></summary>
+      <div class="body">תה מתוק + עוגייה או חתיכת עוגה.
+
+דוגמאות נוספות: לחם עם ממרח — אפשר חלבוני (גבינות למיניהן) ואפשר גם פחמימתי כמו ריבה/שוקולד (כן, אפשר שוקולד). אין טעם להשלים את ה"ערכים" של הארוחות בצאת הצום — זה לא משנה כלום.
+
+מבחינת איבוד מסת שריר: יש לנו פרוטוקולים של צום לסירוגין שלא הראו ירידה משמעותית במסה הרזה, והרוב זה סביר להניח נוזלים מאיבוד גליקוגן בשריר. לכן הסירו דאגה מליבכם — לא תאבדו מסת שריר בצום כיפור.</div></details>
+
+    <div class="callout"><b>גמר חתימה טובה 🤍</b></div>
+  </section>
+
+  <!-- ================= מדריך 4 — סוכות ================= -->
+  <section class="guide" id="g4">
+    <div class="g-head">
+      <span class="em">🌿</span>
+      <h3>סוכות וחול המועד</h3>
+      <p>שבוע שלם של אירוח, טיולים ומטבח פתוח. איך עוברים את החג הארוך ביותר בתשרי בלי לצבור.</p>
+      <div class="meta"><span class="chip">7 ימים</span><span class="chip">אסטרטגיה</span></div>
+    </div>
+
+    <p class="txt">ראש השנה זו ארוחה אחת. יום כיפור זה יום אחד. <b>סוכות זה שבוע.</b>
+
+וזה בדיוק מה שהופך אותו למסוכן יותר מכל שאר חגי תשרי גם יחד — לא בגלל שהאוכל שונה, אלא בגלל שאין בו נקודת סיום ברורה. אנשים נופלים בסוכות לא בארוחה, אלא ב<b>הצטברות</b>: נשנוש בסוכה, פיצוחים על השולחן, קפה ועוגה אצל השכנים, גלידה בטיול, ועוד ארוחה ועוד ארוחה.
+
+הכלל היחיד שצריך לזכור: בשבוע כזה לא מנהלים ארוחות — <b>מנהלים ימים</b>.</p>
+
+    <div class="toc">
+      <span class="toc-t">מה יש כאן</span>
+      <ol>
+        <li>לחלק את השבוע — לא כל יום הוא חג</li>
+        <li>הסוכה כמטבח פתוח — הבעיה האמיתית</li>
+        <li>אירוח והתארחות — שני מצבים שונים</li>
+        <li>חול המועד בחוץ — טיולים ואוכל בדרכים</li>
+        <li>אימונים בשבוע שבור</li>
+      </ol>
+    </div>
+
+    <h4 class="sec">1. לחלק את השבוע — לא כל יום הוא חג</h4>
+    <p class="txt">הטעות הכי נפוצה היא להתייחס לכל שבעת הימים כאל "חג" ולתת לעצמכם אישור גורף. בפועל, בשבוע סוכות ממוצע יש <b>2–3 ארוחות גדולות אמיתיות</b> — ליל החג, אולי ארוחה משפחתית באמצע, ושמחת תורה. כל השאר זה ימי חול עם אווירה של חג.
+
+תשבו רגע ביום הראשון עם היומן ותסמנו: אילו ימים הם ימי ארוחה גדולה, ואילו ימים הם ימים רגילים. הימים הרגילים חוזרים לתפריט שלכם כרגיל — ואז יש לכם תקציב אמיתי לימים הגדולים.</p>
+
+    <div class="callout"><b>חלוקה מעשית לשבוע:</b>
+• 2–3 ימי "חג" — אוכלים לפי כללי שולחן החג (חלוקת כף היד, חוק הצלוחית).
+• 4–5 ימי "שגרה" — תפריט רגיל, אימונים, יעד צעדים.
+• אפס ימי "מה זה משנה כבר" — זה היום שהורס את השבוע, לא הארוחה.</div>
+
+    <h4 class="sec">2. הסוכה כמטבח פתוח — הבעיה האמיתית</h4>
+    <p class="txt">בסוכות משהו משתנה פיזית: <b>האוכל יוצא מהמטבח ועובר לשולחן שאתם יושבים לידו כל היום.</b> קערת פיצוחים, עוגיות, פירות יבשים, בקבוק שתייה מתוקה — הכל בהישג יד, כל הזמן.
+
+זה לא עניין של רצון. זה עניין של נגישות. אדם ממוצע שיושב שעתיים ליד קערת שקדים ופיצוחים יאכל 400–600 קלוריות בלי לשים לב — וזה עוד לפני שהגיעה ארוחה.</p>
+
+    <div class="callout"><b>שלוש פעולות שפותרות את זה:</b>
+• <b>להוציא את הקערה מהשולחן.</b> לא לרוקן — פשוט להעביר אותה לשיש בפנים. מי שרוצה — קם ולוקח. זה מספיק כדי לחתוך 80% מהנשנוש האוטומטי.
+• <b>למלא צלוחית אחת של פיצוחים ליום.</b> חופן = בערך 170 קלוריות. סביר לגמרי. הבעיה היא לא החופן, הבעיה היא החופן החמישי.
+• <b>לשים משהו נגיש שכן עובד לטובתכם.</b> קערת ענבים, מלפפונים חתוכים, גזר. אם היד מחפשת משהו — שתמצא את זה.</div>
+
+    <h4 class="sec">3. אירוח והתארחות — שני מצבים שונים</h4>
+    <p class="txt">רוב האנשים לא מבדילים בין השניים, וזו טעות — כי לכל אחד יש כלי אחר.
+
+<b>כשאתם מארחים —</b> יש לכם שליטה מלאה. תדאגו שתמיד יהיה על השולחן <b>מקור חלבון נדיב</b> (מגש עוף, דגים, פרגית) וסלט גדול. אתם לא צריכים להגיש אוכל "דיאטטי" לאף אחד — פשוט תוודאו שמה שאתם צריכים קיים בשפע. הכינו את מנת החלבון שלכם ראשונה, לפני שכולם מתיישבים.
+
+<b>כשאתם מתארחים —</b> אין לכם שליטה על התפריט, אז השליטה עוברת ל<b>מה שקורה לפני</b>. תגיעו אחרי ארוחת חלבון טובה — 40–50 גרם, שעה־שעתיים לפני. בלי זה אתם מגיעים לשולחן של מישהו אחר, רעבים, בלי אופציות שמתאימות לכם. זה מתכון ידוע לכישלון.</p>
+
+    <h4 class="sec">4. חול המועד בחוץ — טיולים ואוכל בדרכים</h4>
+    <p class="txt">חול המועד זה יומיים־שלושה של יציאות: אטרקציות, פארקים, צפון, ים. וזה בדיוק המקום שבו התכנון קורס — כי אתם רעבים, אתם בחוץ, והאופציות היחידות הן דוכן פלאפל, גלידה או חטיף מהתחנה.
+
+<b>הפתרון הוא לוגיסטי, לא מנטלי.</b> אף אחד לא מנצח רעב בכוח רצון מול דוכן אוכל.</p>
+
+    <div class="callout"><b>ערכת החירום לטיול (5 דקות הכנה בבוקר):</b>
+• מנת חלבון ניידת — 2 ביצים קשות, שקית חזה עוף/הודו, או שייק חלבון מוכן.
+• פרי אחד ושקית ירקות חתוכים.
+• בקבוק מים גדול — הרבה פעמים מה שמרגיש כמו רעב בטיול זה פשוט צמא.
+• אם יודעים מראש שאוכלים בחוץ — לבחור את המסעדה לפני שיוצאים, לא כשכולם כבר רעבים ועצבניים.</div>
+
+    <p class="txt">והצד החיובי: <b>ימי חול המועד הם הימים הכי טובים שלכם מבחינת צעדים.</b> טיול משפחתי ממוצע זה 10–15 אלף צעדים בלי מאמץ. תסתכלו על זה כעל יתרון — הימים האלה מאזנים את ימי הארוחות הגדולות כמעט לבד.</p>
+
+    <h4 class="sec">5. אימונים בשבוע שבור</h4>
+    <p class="txt">חדרי הכושר פותחים בשעות מוזרות, המשפחה בבית, והלו״ז לא דומה לשום דבר. הציפייה לשמור על 4–5 אימונים כרגיל היא לא ריאלית — וכשהיא נשברת, רוב האנשים מוותרים על הכל.
+
+<b>תורידו את הרף מראש.</b> שני אימוני כוח מלאים בשבוע סוכות שומרים על כל מסת השריר שלכם. זו לא פשרה — זו האסטרטגיה.</p>
+
+    <div class="callout"><b>איך מסדרים את זה:</b>
+• לדחוס אימון לפני החג ואחד מיד אחרי — בקצוות, לא באמצע.
+• להעדיף אימוני בוקר: בחג, ככל שהיום מתקדם כך הסיכוי לאימון יורד.
+• אין חדר כושר? אימון משקל גוף של 25 דקות בבית שווה הרבה יותר מאפס.
+• יעד צעדים יומי הוא העוגן שלכם — הוא מחזיק גם כשהאימונים מתפזרים.</div>
+
+    <div class="callout"><b>שורה תחתונה לסוכות:</b>
+לא צריך לעבור את השבוע בשלמות. צריך לעבור אותו <b>בלי הפסקה</b>.
+ההבדל בין מי שמסיים את תשרי במקום שבו התחיל לבין מי שמסיים עם 3 קילו מיותרים הוא לא מה קרה בליל החג — אלא מה קרה בארבעת הימים שביניהם.
+
+חג סוכות שמח 🌿</div>
+  </section>
+
+  <div class="actions">
+    <button class="btn" onclick="window.print()">שמירה כ־PDF ⤓</button>
+  </div>
+
+  <div class="book">
+    <span class="em">📗</span>
+    <h4>50+ גוונים של חלבון</h4>
+    <p>ספר המתכונים שלי — 50 מתכונים עתירי חלבון, פשוטים להכנה ועם ערכים תזונתיים מדויקים לכל מנה. שימושי במיוחד בימי השגרה שבין החגים.</p>
+    <a id="bookLink" href="https://aviel112.github.io/amira-recipes/" target="_blank" rel="noopener">לספר המתכונים ←</a>
+  </div>
+
+  <footer>
+מדריכי חגי תשרי · אביאל עמירה<br>
+    WNBF PRO
+  </footer>
+</div>
+</div>
+
+<script>
+/* ===== יעד יחיד: גיליון גוגל =====
+   כתובת ה-Web App מ-Apps Script (מסתיימת ב-/exec).
+   הקוד של הסקריפט נמצא בקובץ apps-script.gs לצד הקובץ הזה.
+   ⚠️ כל עוד השדה ריק — שום ליד לא נשמר בשום מקום. */
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbzcKmaOJCCAEvR9crn-CQ3Pg2KM1PLcrz8mz1VuOUDJptF13aKGfCuEDwCJypm8usWDrA/exec";
+
+/* מפתח שבו נשמר הליד בדפדפן — כדי שנדע מי לחץ אחר כך על ספר המתכונים */
+const LEAD_KEY = 'holidayGuidesLead';
+
+/* ---------- פרמטרים מהכתובת (ManyChat / קמפיינים) ---------- */
+const QS = new URLSearchParams(location.search);
+const UTM = {
+  utm_source:   QS.get('utm_source')   || '',
+  utm_campaign: QS.get('utm_campaign') || ''
+};
+
+/* ---------- שליחה לגיליון ---------- */
+/* keepalive = הבקשה ממשיכה גם אם המשתמש עוזב את הדף באותו רגע (חשוב ללחיצה על הספר) */
+function send(payload){
+  if (!SHEET_URL || SHEET_URL.indexOf('http') !== 0) return Promise.resolve();
+  return fetch(SHEET_URL, {
+    /* text/plain = בקשה פשוטה בלי preflight, עוברת ל-Apps Script */
+    method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(payload), keepalive:true
+  }).catch(()=>{});
+}
+
+function savedLead(){
+  try { return JSON.parse(localStorage.getItem(LEAD_KEY) || 'null'); } catch(e){ return null; }
+}
+
+/* ---------- מעקב התקדמות: אילו מדריכים נפתחו ---------- */
+/* נשמר מקומית ומשודר לגיליון, כדי שנדע איפה בדיוק כל אחד נעצר */
+const SEEN_KEY = 'holidayGuidesSeen';
+
+function seenGuides(){
+  try { return JSON.parse(localStorage.getItem(SEEN_KEY) || '[]'); } catch(e){ return []; }
+}
+
+let progressDirty = false;
+
+function markGuideSeen(id){
+  const seen = seenGuides();
+  if (seen.includes(id)) return;          // כבר נספר — לא משדרים שוב
+  seen.push(id);
+  try { localStorage.setItem(SEEN_KEY, JSON.stringify(seen)); } catch(e){}
+  progressDirty = true;
+  scheduleProgress();
+}
+
+/* משדרים בהשהיה קצרה — מי שמדפדף מהר בין טאבים לא מייצר 4 בקשות */
+let progressTimer = null;
+function scheduleProgress(){
+  clearTimeout(progressTimer);
+  progressTimer = setTimeout(flushProgress, 1200);
+}
+
+function flushProgress(){
+  const lead = savedLead();
+  if (!lead || !progressDirty) return;
+  progressDirty = false;
+  send({
+    action: 'progress',
+    phone:  lead.phone,
+    guides: seenGuides().join(','),
+    at:     new Date().toISOString()
+  });
+}
+
+/* אם עוזבים את הדף לפני שההשהיה נגמרה — משדרים מיד */
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden') flushProgress();
+});
+window.addEventListener('pagehide', flushProgress);
+
+/* ---------- תקינות טלפון ---------- */
+function normalizePhone(raw){
+  let d = String(raw).replace(/\D/g,'');
+  if (d.indexOf('00972') === 0) d = '0' + d.slice(5);
+  else if (d.indexOf('972') === 0) d = '0' + d.slice(3);
+  return d;
+}
+function isValidMobile(d){ return /^05\d{8}$/.test(d); }
+
+const phoneInput = document.getElementById('gPhone');
+phoneInput.addEventListener('input', () => {
+  phoneInput.value = phoneInput.value.replace(/[^\d+\-\s()]/g,'');
+});
+
+/* ---------- GATE ---------- */
+function openApp(){
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('app').style.display  = 'block';
+  window.scrollTo(0,0);
+  const open = document.querySelector('section.guide.on');
+  if (open) markGuideSeen(open.id);       // המדריך שמוצג כברירת מחדל נספר גם הוא
+}
+
+const gBtn = document.getElementById('gBtn');
+gBtn.addEventListener('click', async () => {
+  const first = document.getElementById('gFirst').value.trim();
+  const last  = document.getElementById('gLast').value.trim();
+  const age   = document.getElementById('gAge').value.trim();
+  const phone = normalizePhone(document.getElementById('gPhone').value);
+  const ig    = document.getElementById('gIg').value.trim().replace(/^@+/,'').replace(/\s+/g,'');
+  const err   = document.getElementById('gErr');
+
+  let msg = '';
+  if (first.length < 2)                    msg = 'בבקשה מלא שם פרטי.';
+  else if (!age || +age < 14 || +age > 99) msg = 'בבקשה מלא גיל תקין (14–99).';
+  else if (!isValidMobile(phone))          msg = 'מספר הטלפון לא תקין — צריך נייד ישראלי, למשל 054-1234567.';
+  else if (ig.length < 2)                  msg = 'בבקשה מלא שם משתמש באינסטגרם.';
+
+  if (msg){ err.textContent = msg; err.style.display = 'block'; return; }
+  err.style.display = 'none';
+  gBtn.textContent = 'רגע...'; gBtn.disabled = true;
+
+  const lead = {
+    action:    'lead',
+    firstName: first,
+    lastName:  last,
+    name:      (first + ' ' + last).trim(),
+    age:       +age,
+    phone:     phone,
+    instagram: '@' + ig,
+    funnel:    'holiday-guides',
+    createdAt: new Date().toISOString(),
+    ...UTM
+  };
+
+  /* נשמר מקומית כדי שנוכל לזהות אותו כשילחץ על ספר המתכונים */
+  try { localStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch(e){}
+
+  await send(lead);
+  openApp();
+});
+
+/* מי שכבר נרשם בעבר נכנס ישירות, בלי למלא שוב */
+if (savedLead()) openApp();
+
+/* ---------- מעקב: מי עבר לספר המתכונים ---------- */
+/* מסמן ✓ בשורה של אותו ליד בגיליון (הצלבה לפי טלפון) ואז פותח את הספר */
+const bookLink = document.getElementById('bookLink');
+if (bookLink){
+  bookLink.addEventListener('click', (ev) => {
+    const lead = savedLead();
+    if (!lead) return;                     // אין ליד שמור — פשוט נותנים לקישור לעבוד
+    ev.preventDefault();
+    flushProgress();                       // שולחים קודם את הקריאה, ואז את המעבר לספר
+    bookLink.textContent = 'פותח...';
+
+    send({
+      action:    'recipe-book',
+      phone:     lead.phone,
+      firstName: lead.firstName,
+      lastName:  lead.lastName,
+      name:      lead.name,
+      age:       lead.age,
+      instagram: lead.instagram,
+      funnel:    'holiday-guides',
+      clickedAt: new Date().toISOString(),
+      ...UTM
+    });
+
+    /* לא מחכים לתשובה — keepalive דואג שהבקשה תסתיים גם אחרי המעבר */
+    setTimeout(() => {
+      bookLink.textContent = 'לספר המתכונים ←';
+      window.open(bookLink.href, '_blank', 'noopener');
+    }, 150);
+  });
+}
+
+/* ---------- TABS ---------- */
+document.querySelectorAll('.tab').forEach(t => {
+  t.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
+    document.querySelectorAll('section.guide').forEach(x => x.classList.remove('on'));
+    t.classList.add('on');
+    document.getElementById(t.dataset.t).classList.add('on');
+    markGuideSeen(t.dataset.t);
+    window.scrollTo({ top:0, behavior:'smooth' });
+  });
+});
+</script>
+</body>
+</html>
