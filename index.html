@@ -551,6 +551,7 @@
    כתובת ה-Web App מ-Apps Script (מסתיימת ב-/exec).
    הקוד של הסקריפט נמצא בקובץ apps-script.gs לצד הקובץ הזה.
    ⚠️ כל עוד השדה ריק — שום ליד לא נשמר בשום מקום. */
+const LEADS_URL = "https://script.google.com/macros/s/AKfycbxSkxJJ1ODs067IOfDkuosXzKX-pVi2W7uTcWKAS-7YFuh8PW9mrjSS8bNC4SaiRTkP/exec";
 const SHEET_URL = "https://script.google.com/macros/s/AKfycbzcKmaOJCCAEvR9crn-CQ3Pg2KM1PLcrz8mz1VuOUDJptF13aKGfCuEDwCJypm8usWDrA/exec";
 
 /* מפתח שבו נשמר הליד בדפדפן — כדי שנדע מי לחץ אחר כך על ספר המתכונים */
@@ -680,6 +681,8 @@ gBtn.addEventListener('click', async () => {
   /* נשמר מקומית כדי שנוכל לזהות אותו כשילחץ על ספר המתכונים */
   try { localStorage.setItem(LEAD_KEY, JSON.stringify(lead)); } catch(e){}
 
+  /* עותק ללשונית לידים בלוח המתאמנים */
+  fetch(LEADS_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'text/plain'}, body: JSON.stringify(lead), keepalive:true }).catch(()=>{});
   await send(lead);
   openApp();
 });
